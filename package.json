@@ -1,0 +1,20 @@
+{
+  "name": "advent-of-code-2023",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/d3": "^7.4.3",
+    "d3": "^7.8.5",
+    "vitest": "^0.34.6"
+  }
+}
