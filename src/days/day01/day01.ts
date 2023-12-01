@@ -14,23 +14,22 @@ export default class Day01 extends Day {
 
     part2(input:string) {
         return input.lines()
-            .map(l => l
-                // Use lookahead to create "duplicates" of overlapping numbers
-                .replace(/(?=(one|two|three|four|five|six|seven|eight|nine))/g,"$1")
-                // Replace with the real numbers
-                .replace(/one/g,"1")
-                .replace(/two/g,"2")
-                .replace(/three/g,"3")
-                .replace(/four/g,"4")
-                .replace(/five/g,"5")
-                .replace(/six/g,"6")
-                .replace(/seven/g,"7")
-                .replace(/eight/g,"8")
-                .replace(/nine/g,"9")
-            )
-            .map(l => l.findNumbers().join())
+            .map(l => [...l.matchAll(/(?=(one|two|three|four|five|six|seven|eight|nine|[1-9]))/g)])
+            .map(l => l.map(match => numMap[match[1]] ?? match[1]))
             .map(l => l[0] + l.slice(-1))
             .toInts()
             .sum()
     }
+}
+
+const numMap: Record<string, string> = {
+    one:"1",
+    two:"2",
+    three:"3",
+    four:"4",
+    five:"5",
+    six:"6",
+    seven:"7",
+    eight:"8",
+    nine:"9"
 }
