@@ -18,6 +18,12 @@ Array.prototype.min = function (this) {
   return Math.min(...this)
 }
 
+Array.prototype.mapNonNull = function (this, func) {
+  return this.map(func)
+    .filter(item => item != null)
+    .map(item => item!)
+}
+
 Array.prototype.groupedBy = function (
   this,
   keyFunc,

@@ -11,3 +11,11 @@ String.prototype.findNumbers = function (this) {
     .map((i) => i.toString())
     .toInts();
 };
+
+String.prototype.matchAllAsList = function (this, regexp) {
+  return [...this.matchAll(regexp)]
+}
+
+String.prototype.parseInt = function (this) {
+  return parseInt(this)
+}
