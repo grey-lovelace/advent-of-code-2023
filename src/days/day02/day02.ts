@@ -24,7 +24,7 @@ export default class Day02 extends Day {
           pull => pull.amount
         )
         .entries()
-        .map(([color, amounts]) => amounts.max())
+        .map(([_color, amounts]) => amounts.max())
         .product()
       ).sum()
   }

@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import Day from "./day";
-import { expect, test } from "vitest";
+import { expect, test, it } from "vitest";
 
 const run = (
   func: (input: string) => any,

@@ -24,10 +24,10 @@ Array.prototype.mapNonNull = function (this, func) {
     .map(item => item!)
 }
 
-Array.prototype.groupedBy = function (
-  this,
-  keyFunc,
-  valFunc = (item) => item
+Array.prototype.groupedBy = function<T, K extends string | number | symbol, V> (
+  this: T[],
+  keyFunc: (item: T) => K,
+  valFunc: ((item: T) => V) | ((item: T) => T) = (item) => item
 ) {
   const reduced = this.reduce((a, c) => {
     const key = keyFunc(c)
@@ -49,7 +49,7 @@ Array.prototype.look = function (
 }
 
 Array.prototype.transposed = function (this) {
-  return this.reduce((a, c) => {
+  return this.reduce((a: any[], c) => {
     c.forEach((item, i) => {
       if (a.length <= i) a.push([])
       a[i].push(item)
