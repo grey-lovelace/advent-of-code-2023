@@ -6,40 +6,38 @@ export default class Day03 extends Day {
     expectedPart2Results = () => [["sample.txt", 467835]]
 
     part1(input:string) {
-        const symbols = parseSymbols(input)
-        return parseNumbers(input)
-            .filter(n => symbols.some(s => n.isAdjacent(s)))
-            .map(n => n.value.parseInt())
+        const partNums = parse(input, /\d+/g)
+        const symbols = parse(input, /[^\d\.]/g)
+        return partNums
+            .filter(partNum => symbols.some(symbol => partNum.isAdjacentTo(symbol)))
+            .map(partNum => partNum.val.parseInt())
             .sum()
     }
 
     part2(input:string) {
-        const nums = parseNumbers(input)
-        return parseSymbols(input)
-            .map(s => nums.filter(n => n.isAdjacent(s)))
+        const partNums = parse(input, /\d+/g)
+        const gearSymbols = parse(input, /[*]/g)
+        return gearSymbols
+            .map(symbol => partNums.filter(partNum => partNum.isAdjacentTo(symbol)))
             .filter(maybeGearNums => maybeGearNums.length === 2)
-            .map(gearNums => gearNums.map(n => n.value.parseInt()).product())
+            .map(gearNums => gearNums.map(n => n.val.parseInt()).product())
             .sum()
     }
 }
 
-class SymbolOrNumber {
-    value!: string
-    line!: number
-    index!: number
+class GridItem {
+    x!: number; y!: number; val!: string
 
-    isAdjacent = (s: SymbolOrNumber) => 
-        range(this.line-1, this.line+1).includes(s.line) &&
-        range(this.index-1, this.index + this.value.length).includes(s.index)
-    
+    isAdjacentTo = (s: GridItem) => 
+        range(this.x-1, this.x + this.val.length).includes(s.x) &&
+        range(this.y-1, this.y+1).includes(s.y)
 }
 
-const parseNumbers = (input: string) => parse(input, /\d+/g)
-const parseSymbols = (input: string) => parse(input, /[^\d\.]/g)
 const parse = (input: string, pattern: RegExp) => input.lines()
     .map(l => l.matchAllAsList(pattern))
-    .flatMap((matches, i) => matches.map(match => Object.assign(new SymbolOrNumber(), {
-        value: match[0],
-        index: match.index,
-        line: i
-    })))
+    .flatMap((matches, i) => matches.map(match => Object.assign(
+        new GridItem(), {
+            val: match[0],
+            x: match.index,
+            y: i
+        })))

@@ -14,6 +14,7 @@ interface Array<T> {
     keyFunc: (item: T) => K,
     valFunc: (item: T) => V
   ): Record<K, V[]>;
+  unique<T>(this: T[]): T[]
   look(this: T[], func?: (item: T) => void): T[];
   transposed<T,K extends Array<T>>(this: K[]): K[];
 }

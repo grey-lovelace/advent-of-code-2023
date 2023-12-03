@@ -38,6 +38,10 @@ Array.prototype.groupedBy = function<T, K extends string | number | symbol, V> (
   return { ...reduced }
 }
 
+Array.prototype.unique = function (this) {
+  return [...new Set(this)]
+}
+
 Array.prototype.look = function (
   this,
   func = (i) => console.log(i)
