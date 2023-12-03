@@ -29,8 +29,8 @@ class SymbolOrNumber {
     index!: number
 
     isAdjacent = (s: SymbolOrNumber) => 
-        range(this.line-1, this.line+2).includes(s.line) &&
-        range(this.index-1, this.index + this.value.length + 1).includes(s.index)
+        range(this.line-1, this.line+1).includes(s.line) &&
+        range(this.index-1, this.index + this.value.length).includes(s.index)
     
 }
 
