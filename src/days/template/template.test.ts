@@ -1,4 +1,4 @@
 import tests from "../../utils/testUtils";
-import Day02 from "./template";
+import TemplateDay from "./template";
 
-tests(new Day02(), __dirname)
+tests(new TemplateDay(), __dirname)

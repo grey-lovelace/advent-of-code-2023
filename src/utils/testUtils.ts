@@ -12,7 +12,7 @@ const run = (
     encoding: "utf8",
   });
   const output = func(input);
-  if (expected) expect(output).toBe(expected);
+  if (expected != null) expect(output).toBe(expected);
   else console.log(`${part} - ${output}`);
 }
 

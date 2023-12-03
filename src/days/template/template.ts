@@ -1,6 +1,6 @@
 import Day from "../../utils/day"
 
-export default class Day02 extends Day {
+export default class TemplateDay extends Day {
     expectedPart1Results = () => [["sample.txt", 0]]
     runPart1 = true
     expectedPart2Results = () => [["sample.txt", 0]]
