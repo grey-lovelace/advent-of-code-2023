@@ -26,7 +26,7 @@ export default class Day03 extends Day {
 }
 
 class GridItem {
-    x!: number; y!: number; val!: string
+    constructor(private x: number, private y: number, public val: string) {}
 
     isAdjacentTo = (s: GridItem) => 
         range(this.x-1, this.x + this.val.length).includes(s.x) &&
@@ -35,9 +35,4 @@ class GridItem {
 
 const parse = (input: string, pattern: RegExp) => input.lines()
     .map(l => l.matchAllAsList(pattern))
-    .flatMap((matches, i) => matches.map(match => Object.assign(
-        new GridItem(), {
-            val: match[0],
-            x: match.index,
-            y: i
-        })))
+    .flatMap((matches, i) => matches.map(match => new GridItem(match.index!, i, match[0])))
