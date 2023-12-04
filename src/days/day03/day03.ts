@@ -26,11 +26,14 @@ export default class Day03 extends Day {
 }
 
 class GridItem {
-    constructor(private x: number, private y: number, public val: string) {}
+    constructor(private x: number, private y: number, public val: string) {
+        this.xRange = range(this.x-1, this.x+this.val.length)
+        this.yRange = range(this.y-1, this.y+1)
+    }
+    xRange: number[]
+    yRange: number[]
 
-    isAdjacentTo = (s: GridItem) => 
-        range(this.x-1, this.x + this.val.length).includes(s.x) &&
-        range(this.y-1, this.y+1).includes(s.y)
+    isAdjacentTo = (s: GridItem) =>  this.xRange.includes(s.x) && this.yRange.includes(s.y)
 }
 
 const parse = (input: string, pattern: RegExp) => input.lines()
