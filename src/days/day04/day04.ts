@@ -3,9 +3,7 @@ import Day from "../../utils/day";
 
 export default class Day04 extends Day {
   expectedPart1Results = () => [["sample.txt", 13]];
-  runPart1 = true;
   expectedPart2Results = () => [["sample.txt", 30]];
-  runPart2 = true;
 
   part1(input: string) {
     return input.lines()
