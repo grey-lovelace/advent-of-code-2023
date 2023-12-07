@@ -15,6 +15,7 @@ interface Array<T> {
     valFunc: (item: T) => V
   ): Record<K, V[]>;
   unique<T>(this: T[]): T[]
+  count<T>(this: T[], item: T): number
   count<T>(this: T[], func: (item: T) => boolean): number
   look(this: T[], func?: (item: T) => void): T[];
   transposed<T,K extends Array<T>>(this: K[]): K[];

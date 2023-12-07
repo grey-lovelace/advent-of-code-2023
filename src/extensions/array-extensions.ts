@@ -50,8 +50,10 @@ Array.prototype.unique = function (this) {
   return [...new Set(this)]
 }
 
-Array.prototype.count = function (this, func) {
-  return this.filter(func).length
+Array.prototype.count = function <T>(this: T[], funcOrItem: T | ((item: T) => boolean)) {
+  return funcOrItem instanceof Function ?
+    this.filter(funcOrItem).length :
+    this.filter(item => item === funcOrItem).length
 }
 
 Array.prototype.look = function (

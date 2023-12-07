@@ -29,20 +29,20 @@ const playGame = (input:string, allowJokers: boolean, tiebreaker: string[]) =>
 
 const scoreHand = (hand: string[], allowJokers: boolean) => {
     const distinct = hand.unique().length
-    const jokers = allowJokers ? hand.count(card => card === "J") : 0
-    if(distinct === 1) return 6
+    const jokers = allowJokers ? hand.count("J") : 0
+    if(distinct === 1) return 6 // 5 of a kind
     if(distinct === 2) {
-        if(jokers) return 6
-        if(hand.some(card => hand.count(card2 => card2 === card) === 4)) return 5
-        return 4
+        if(jokers) return 6 // 5 of a kind
+        if(hand.some(card => hand.count(card) === 4)) return 5 // 4 of a kind
+        return 4 // full house
     }
     if(distinct === 3) {
-        if(jokers === 2) return 5
-        if(hand.some(card => hand.count(card2 => card2 === card) ===3)) return jokers ? 5 : 3
-        return jokers ? 4 : 2
+        if(jokers === 2) return 5 // 4 of a kind
+        if(hand.some(card => hand.count(card) ===3)) return jokers ? 5 : 3 // 4 of a kind or 3 of a kind
+        return jokers ? 4 : 2 // full house or 2 pair
     }
-    if(distinct === 4) return jokers ? 3 : 1
-    return jokers ? 1 : 0
+    if(distinct === 4) return jokers ? 3 : 1 // 3 of a kind or a pair
+    return jokers ? 1 : 0 // a pair or nothing
 }
 
 if (import.meta.vitest) {
