@@ -31,17 +31,17 @@ const scoreHand = (hand: string[], allowJokers: boolean) => {
     const distinctCards = hand.unique()
     const jokerCount = allowJokers ? hand.count(card => card === "J") : 0
     if(distinctCards.length === 1) return 6
-    else if(distinctCards.length === 2) {
+    if(distinctCards.length === 2) {
         if(jokerCount) return 6
-        else if(hand.some(card => hand.count(card2 => card2 === card) === 4)) return 5
-        else return 4
+        if(hand.some(card => hand.count(card2 => card2 === card) === 4)) return 5
+        return 4
     }
-    else if(distinctCards.length === 3) {
+    if(distinctCards.length === 3) {
         if(jokerCount === 2) return 5
         if(hand.some(card => hand.count(card2 => card2 === card) ===3)) return jokerCount ? 5 : 3
-        else return jokerCount ? 4 : 2
+        return jokerCount ? 4 : 2
     }
-    else if(distinctCards.length === 4) return jokerCount ? 3 : 1
+    if(distinctCards.length === 4) return jokerCount ? 3 : 1
     return jokerCount ? 1 : 0
 }
 
