@@ -1,4 +1,5 @@
 import Day from "../../utils/day"
+import tests from "../../utils/testUtils"
 
 export default class TemplateDay extends Day {
     expectedPart1Results = () => [["sample.txt", 0]]
@@ -13,4 +14,8 @@ export default class TemplateDay extends Day {
     part2(input:string) {
         return 0
     }
+}
+
+if (import.meta.vitest) {
+    tests(new TemplateDay(), __dirname)
 }
