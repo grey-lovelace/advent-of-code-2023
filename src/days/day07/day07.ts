@@ -28,21 +28,21 @@ const playGame = (input:string, allowJokers: boolean, tiebreaker: string[]) =>
         .sum()
 
 const scoreHand = (hand: string[], allowJokers: boolean) => {
-    const distinctCards = hand.unique()
-    const jokerCount = allowJokers ? hand.count(card => card === "J") : 0
-    if(distinctCards.length === 1) return 6
-    if(distinctCards.length === 2) {
-        if(jokerCount) return 6
+    const distinct = hand.unique().length
+    const jokers = allowJokers ? hand.count(card => card === "J") : 0
+    if(distinct === 1) return 6
+    if(distinct === 2) {
+        if(jokers) return 6
         if(hand.some(card => hand.count(card2 => card2 === card) === 4)) return 5
         return 4
     }
-    if(distinctCards.length === 3) {
-        if(jokerCount === 2) return 5
-        if(hand.some(card => hand.count(card2 => card2 === card) ===3)) return jokerCount ? 5 : 3
-        return jokerCount ? 4 : 2
+    if(distinct === 3) {
+        if(jokers === 2) return 5
+        if(hand.some(card => hand.count(card2 => card2 === card) ===3)) return jokers ? 5 : 3
+        return jokers ? 4 : 2
     }
-    if(distinctCards.length === 4) return jokerCount ? 3 : 1
-    return jokerCount ? 1 : 0
+    if(distinct === 4) return jokers ? 3 : 1
+    return jokers ? 1 : 0
 }
 
 if (import.meta.vitest) {
