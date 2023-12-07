@@ -1,4 +1,5 @@
 import Day from "../../utils/day"
+import tests from "../../utils/testUtils"
 
 export default class Day01 extends Day {
     expectedPart1Results = () => [["sample.txt", 142]]
@@ -32,4 +33,8 @@ const numMap: Record<string, string> = {
     seven:"7",
     eight:"8",
     nine:"9"
+}
+
+if (import.meta.vitest) {
+    tests(new Day01(), __dirname)
 }

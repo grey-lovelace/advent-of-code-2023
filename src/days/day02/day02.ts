@@ -1,4 +1,5 @@
 import Day from "../../utils/day";
+import tests from "../../utils/testUtils";
 
 export default class Day02 extends Day {
   expectedPart1Results = () => [["sample.txt", 8]]
@@ -28,4 +29,8 @@ export default class Day02 extends Day {
         .product()
       ).sum()
   }
+}
+
+if (import.meta.vitest) {
+  tests(new Day02(), __dirname)
 }

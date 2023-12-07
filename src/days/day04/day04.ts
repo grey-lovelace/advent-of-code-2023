@@ -1,5 +1,6 @@
 import { range } from "d3";
 import Day from "../../utils/day";
+import tests from "../../utils/testUtils";
 
 export default class Day04 extends Day {
   expectedPart1Results = () => [["sample.txt", 13]];
@@ -47,4 +48,8 @@ export default class Day04 extends Day {
         .map(card => card.instances)
         .sum())
   }
+}
+
+if (import.meta.vitest) {
+  tests(new Day04(), __dirname)
 }

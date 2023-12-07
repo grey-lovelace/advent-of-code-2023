@@ -1,5 +1,6 @@
 import Day from "../../utils/day"
 import { range } from "../../utils/range"
+import tests from "../../utils/testUtils"
 
 export default class Day03 extends Day {
     expectedPart1Results = () => [["sample.txt", 4361],["sample2.txt", 7634]]
@@ -39,3 +40,7 @@ class GridItem {
 const parse = (input: string, pattern: RegExp) => input.lines()
     .map(l => l.matchAllAsList(pattern))
     .flatMap((matches, i) => matches.map(match => new GridItem(match.index!, i, match[0])))
+
+if (import.meta.vitest) {
+    tests(new Day03(), __dirname)
+}
