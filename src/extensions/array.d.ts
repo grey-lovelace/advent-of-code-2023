@@ -4,7 +4,7 @@ interface Array<T> {
   max(this: number[]): number;
   min(this: number[]): number;
   toInts(this: string[]): number[];
-  mapNonNull<T, K>(this: T[], callbackfn: (T) => K | null): K[];
+  mapNonNull<T, K>(this: T[], callbackfn: (T, number) => K | null): K[];
   groupedBy<T, K extends string | number | symbol>(
     this: T[],
     keyFunc: (item: T) => K

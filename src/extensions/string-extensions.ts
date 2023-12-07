@@ -7,8 +7,8 @@ String.prototype.lines = function (this) {
 };
 
 String.prototype.findNumbers = function (this) {
-  return [...this.matchAll(/[\-\d]+/g)]
-    .map((i) => i.toString())
+  return this.matchAllAsList(/[\-\d]+/g)
+    .map(i => i[0])
     .toInts();
 };
 
