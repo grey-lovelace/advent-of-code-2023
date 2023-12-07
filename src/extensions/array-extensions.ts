@@ -1,6 +1,14 @@
 Array.prototype.toInts = function (this) {
   return this.map(l => parseInt(l))
 }
+// Object.defineProperty(Array.prototype, 'toInts', {
+//   writable: false,
+//   enumerable: false,
+//   configurable: false,
+//   value() {
+//     return this.map(l => parseInt(l))
+//   }
+// });
 
 Array.prototype.sum = function (this) {
   return this.reduce((a, c) => a + c, 0)
@@ -40,6 +48,10 @@ Array.prototype.groupedBy = function<T, K extends string | number | symbol, V> (
 
 Array.prototype.unique = function (this) {
   return [...new Set(this)]
+}
+
+Array.prototype.count = function (this, func) {
+  return this.filter(func).length
 }
 
 Array.prototype.look = function (
