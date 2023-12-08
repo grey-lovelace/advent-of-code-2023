@@ -5,6 +5,7 @@ interface Array<T> {
   min(this: number[]): number;
   toInts(this: string[]): number[];
   mapNonNull<T, K>(this: T[], callbackfn: (T, number) => K | null): K[];
+  associateBy<T, K extends string | number>(this: T[], keyFunc: (item: T) => K): Record<K, T>
   groupedBy<T, K extends string | number | symbol>(
     this: T[],
     keyFunc: (item: T) => K

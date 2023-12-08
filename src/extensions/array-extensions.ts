@@ -1,14 +1,6 @@
 Array.prototype.toInts = function (this) {
   return this.map(l => parseInt(l))
 }
-// Object.defineProperty(Array.prototype, 'toInts', {
-//   writable: false,
-//   enumerable: false,
-//   configurable: false,
-//   value() {
-//     return this.map(l => parseInt(l))
-//   }
-// });
 
 Array.prototype.sum = function (this) {
   return this.reduce((a, c) => a + c, 0)
@@ -30,6 +22,15 @@ Array.prototype.mapNonNull = function (this, func) {
   return this.map(func)
     .filter(item => item != null)
     .map(item => item!)
+}
+
+Array.prototype.associateBy = function <T, K extends string | number>(
+    this: T[],
+    keyFunc: (item: T) => K) {
+  return this.reduce((acc, node) => ({
+    ...acc,
+    [keyFunc(node)]: node
+  }), {} as Record<K, T>)
 }
 
 Array.prototype.groupedBy = function<T, K extends string | number | symbol, V> (
