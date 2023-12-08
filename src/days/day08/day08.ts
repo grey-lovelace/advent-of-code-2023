@@ -40,7 +40,7 @@ const parseDirsAndNodes = (input: string) => input.lines()
   .let(lines => ({
     directions: lines[0].split("") as ("L" | "R")[],
     nodes: lines.slice(2)
-      .map(l => l.matchAllAsList(/[\w]{3}/g)!
+      .map(l => l.matchAllAsList(/\w{3}/g)!
         .let(matches => ({
           name: matches[0][0],
           L: matches[1][0],
