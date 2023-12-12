@@ -32,11 +32,9 @@ const findDistances = (input: string, expansionFactor: number) => {
 
     // Find
     const galaxies = grid.points.filter(point => point.val ==="#")
-    return galaxies.flatMap((g, i) => galaxies.slice(i+1).map(g2 => [g, g2]))
-        .map(pair =>
-            (Math.max(pair[0].x, pair[1].x)-Math.min(pair[0].x, pair[1].x))
-            + (Math.max(pair[0].y, pair[1].y)-Math.min(pair[0].y, pair[1].y)))
-        .sum()
+    return galaxies.flatMap((g, i) => 
+        galaxies.slice(i+1).map(g2 => g.manhattanDistance(g2))
+    ).sum()
 }
 
 if (import.meta.vitest) {

@@ -22,10 +22,10 @@ export default class Day10 extends Day {
 
         // Find original direciton of path
         let originalDir = null
-        if (path[0].x < path[1].x) originalDir = "R" as Direction
-        else if (path[0].x > path[1].x) originalDir = "L" as Direction
-        else if (path[0].y < path[1].y) originalDir = "D" as Direction
-        else originalDir = "U" as Direction
+        if (path[0].x < path[1].x) originalDir = "E" as Direction
+        else if (path[0].x > path[1].x) originalDir = "W" as Direction
+        else if (path[0].y < path[1].y) originalDir = "S" as Direction
+        else originalDir = "N" as Direction
 
         // We don't know whether to search to the right or the left,
         // so search one, and if we returned nothing, search the other way.
@@ -47,10 +47,10 @@ const findPath = (input: string) => {
 const traverse = (grid: Grid, path: Point[]): Point[] | undefined => {
     const lastPoint = path.at(-1)!
     const rules = [
-        {point: lastPoint.above(), validLastVals: ["S","|","J","L"], validVals: ["S","|","F","7"]},
-        {point: lastPoint.below(), validLastVals: ["S","|","F","7"], validVals: ["S","|","J","L"]},
-        {point: lastPoint.right(), validLastVals: ["S","-","L","F"], validVals: ["S","-","J","7"]},
-        {point: lastPoint.left(), validLastVals: ["S","-","7","J"], validVals: ["S","-","L","F"]},
+        {point: lastPoint.north(), validLastVals: ["S","|","J","L"], validVals: ["S","|","F","7"]},
+        {point: lastPoint.south(), validLastVals: ["S","|","F","7"], validVals: ["S","|","J","L"]},
+        {point: lastPoint.east(), validLastVals: ["S","-","L","F"], validVals: ["S","-","J","7"]},
+        {point: lastPoint.west(), validLastVals: ["S","-","7","J"], validVals: ["S","-","L","F"]},
     ]
     for(let rule of rules) {
         if(rule.validLastVals.includes(lastPoint.val)) {
@@ -65,10 +65,10 @@ const traverse = (grid: Grid, path: Point[]): Point[] | undefined => {
 }
 
 const turnMapping : Record<Direction,Record<string, typeof turnL>> = {
-    "U": {"F": turnR,"7": turnL},
-    "D": {"J": turnR,"L": turnL},
-    "L": {"L": turnR,"F": turnL},
-    "R": {"7": turnR,"J": turnL}
+    "N": {"F": turnR,"7": turnL},
+    "S": {"J": turnR,"L": turnL},
+    "W": {"L": turnR,"F": turnL},
+    "E": {"7": turnR,"J": turnL}
 } as const
 
 const findInnerArea = (path: Point[], areaPoints: Point[], currentPoint: Point, currentDir: Direction, getSearchDir: typeof turnL): Point[] | undefined => {
@@ -103,10 +103,10 @@ const findInnerArea = (path: Point[], areaPoints: Point[], currentPoint: Point, 
 const search = (searchDir: Direction, currentPoint: Point, path: Point[]): Point[] => {
     const areaPoints: Point[] = []
     const dirToFunc = {
-        "R": "right",
-        "L": "left",
-        "U": "above",
-        "D": "below"
+        "E": "east",
+        "W": "west",
+        "N": "north",
+        "S": "south"
     } as const
     let nextPoint = currentPoint[dirToFunc[searchDir]]()
     while(nextPoint && !path.some(pathP => pathP.equals(nextPoint!))){

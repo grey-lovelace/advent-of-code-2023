@@ -59,7 +59,7 @@ Array.prototype.count = function <T>(this: T[], funcOrItem: T | ((item: T) => bo
 
 Array.prototype.look = function (
   this,
-  func = (i) => console.log(i)
+  func = (i) => console.log(i ? i.toString() : i)
 ) {
   return this.map(i => {
     func(i)

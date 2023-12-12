@@ -1,4 +1,6 @@
-export type Direction = "U" | "R" | "D" | "L"
-export const directions: Direction[] = ["U", "R", "D", "L"]
-export const turnR = (currentDir: Direction) => directions.at((directions.indexOf(currentDir)! + 1) % directions.length)!
-export const turnL = (currentDir: Direction) => directions.at((directions.indexOf(currentDir)! - 1) % directions.length)!
+export type Direction = "N" | "E" | "S" | "W"
+export const directions: Direction[] = ["N", "E", "S", "W"]
+export const turn = (currentDir: Direction, turnAmount: number) =>
+    directions.at((directions.indexOf(currentDir)! + turnAmount) % directions.length)!
+export const turnR = (currentDir: Direction) => turn(currentDir, 1)
+export const turnL = (currentDir: Direction) => turn(currentDir, -1)

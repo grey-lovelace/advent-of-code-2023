@@ -44,7 +44,7 @@ const findNumOfRuns = (
 const parseDirectionsAndNodes = (lines: string[]) => ({
   directions: lines[0].split("") as ("L" | "R")[],
   nodeMap: lines.slice(2)
-    .map(l => l.matchAllAsList(/\w{3}/g)!
+    .map(l => l.matchAllAsList(/\w{3}/g)
       .let(matches => new Node(matches[0][0], matches[1][0], matches[2][0])))
     .associateBy(node => node.name)
 })
